@@ -12,6 +12,17 @@
 
 #### Twitter
 > Twitter 的实现策略
+1. 第一位为0，不用
+2. timestamp—41bits,精确到ms，那就意味着其可以表示长达(2^41-1)/(1000360024*365)=139.5年
+3. machine id—10bits,该部分其实由datacenterId和workerId两部分组成
+    1. datacenterId，方便搭建多个生成uid的service，并保证uid不重复
+    2. workerId是实际server机器的代号，最大到32，同一个datacenter下的workerId是不能重复的
+4. sequence id —12bits,该id可以表示4096个数字
+
+参考：
+- <http://hacloud.club/2017/09/09/snowflake/>
+- <https://www.jianshu.com/p/54a87a7c3622>
+- <https://gitee.com/keets/snowflake-id-generator>
 
 #### 其它
 > 一些小的尝试
